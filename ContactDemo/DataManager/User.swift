@@ -12,6 +12,8 @@ class User: NSObject {
     var firstName: String!
     var lastName: String!
     var phone: String!
+    //暂时不实现该属性及其相关的需求
+    var avatar: UIImage?
     
     init(firstName: String, lastName: String, phone: String) {
         super.init()

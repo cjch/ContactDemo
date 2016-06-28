@@ -18,13 +18,13 @@ class UserDataManager: NSObject {
         return StaticManager.instance
     }
     
-    var db: Connection!
-    var userTable: Table!
+    private var db: Connection!
+    private var userTable: Table!
     
-    let id = Expression<Int64>("id")
-    let firstName = Expression<String>("firstName")
-    let lastName = Expression<String>("lastName")
-    let phone = Expression<String>("phone")
+    private let id = Expression<Int64>("id")
+    private let firstName = Expression<String>("firstName")
+    private let lastName = Expression<String>("lastName")
+    private let phone = Expression<String>("phone")
     
     private override init() {
         super.init()
@@ -72,6 +72,10 @@ class UserDataManager: NSObject {
         } catch {
             print("Error: insert user");
         }
+    }
+    
+    func updateUser(user: User) {
+        
     }
     
     func deleteUser(user: User) {

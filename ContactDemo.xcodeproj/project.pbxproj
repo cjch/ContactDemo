@@ -18,6 +18,10 @@
 		F5C81D791D215AEC00C95A1C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C81D781D215AEC00C95A1C /* User.swift */; };
 		F5C81D7C1D215CAE00C95A1C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C81D7B1D215CAE00C95A1C /* MainViewController.swift */; };
 		F5C81D7E1D215CD500C95A1C /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C81D7D1D215CD500C95A1C /* SearchResultsViewController.swift */; };
+		F5C81D841D22993100C95A1C /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C81D821D22993100C95A1C /* ContactsCell.swift */; };
+		F5C81D851D22993100C95A1C /* ContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5C81D831D22993100C95A1C /* ContactsCell.xib */; };
+		F5C81D871D22A36A00C95A1C /* UserDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C81D861D22A36A00C95A1C /* UserDetailTableViewController.swift */; };
+		F5C81D891D22AB3B00C95A1C /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C81D881D22AB3B00C95A1C /* UserEditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		F5C81D781D215AEC00C95A1C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F5C81D7B1D215CAE00C95A1C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F5C81D7D1D215CD500C95A1C /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		F5C81D821D22993100C95A1C /* ContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
+		F5C81D831D22993100C95A1C /* ContactsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsCell.xib; sourceTree = "<group>"; };
+		F5C81D861D22A36A00C95A1C /* UserDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewController.swift; sourceTree = "<group>"; };
+		F5C81D881D22AB3B00C95A1C /* UserEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,10 +176,22 @@
 		F5C81D7A1D215C9100C95A1C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				F5C81D811D2298E400C95A1C /* Views */,
 				F5C81D7B1D215CAE00C95A1C /* MainViewController.swift */,
 				F5C81D7D1D215CD500C95A1C /* SearchResultsViewController.swift */,
+				F5C81D861D22A36A00C95A1C /* UserDetailTableViewController.swift */,
+				F5C81D881D22AB3B00C95A1C /* UserEditViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F5C81D811D2298E400C95A1C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F5C81D821D22993100C95A1C /* ContactsCell.swift */,
+				F5C81D831D22993100C95A1C /* ContactsCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +265,7 @@
 				TargetAttributes = {
 					F5C81D431D21569E00C95A1C = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = VBVAT8HGJQ;
 					};
 					F5C81D571D21569E00C95A1C = {
 						CreatedOnToolsVersion = 7.3;
@@ -281,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5C81D851D22993100C95A1C /* ContactsCell.xib in Resources */,
 				F5C81D521D21569E00C95A1C /* LaunchScreen.storyboard in Resources */,
 				F5C81D4F1D21569E00C95A1C /* Assets.xcassets in Resources */,
 				F5C81D4D1D21569E00C95A1C /* Main.storyboard in Resources */,
@@ -356,11 +378,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5C81D871D22A36A00C95A1C /* UserDetailTableViewController.swift in Sources */,
 				F5C81D791D215AEC00C95A1C /* User.swift in Sources */,
 				F5C81D481D21569E00C95A1C /* AppDelegate.swift in Sources */,
+				F5C81D891D22AB3B00C95A1C /* UserEditViewController.swift in Sources */,
 				F5C81D771D21583D00C95A1C /* UserDataManager.swift in Sources */,
 				F5C81D7C1D215CAE00C95A1C /* MainViewController.swift in Sources */,
 				F5C81D7E1D215CD500C95A1C /* SearchResultsViewController.swift in Sources */,
+				F5C81D841D22993100C95A1C /* ContactsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +528,7 @@
 			baseConfigurationReference = 04F456B8954EA58CEF8E9FBC /* Pods-ContactDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ContactDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -516,6 +542,7 @@
 			baseConfigurationReference = CF8A18EB69D3A31423733684 /* Pods-ContactDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ContactDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

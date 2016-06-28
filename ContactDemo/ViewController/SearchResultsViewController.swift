@@ -14,16 +14,19 @@ class SearchResultsViewController: UIViewController {
     
     var searchResults = [User]()
     
-    class func getInstance() -> SearchResultsViewController {
+    private weak var container: UIViewController!
+    
+    class func getInstance(container: UIViewController) -> SearchResultsViewController {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(String(self)) as! SearchResultsViewController
-        return vc;
+        vc.container = container
+        return vc
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: String(UITableViewCell))
+        tableView.registerNib(UINib(nibName: String(ContactsCell), bundle: nil), forCellReuseIdentifier: String(ContactsCell))
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,17 +45,20 @@ extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+        return 64
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(String(UITableViewCell))
-        let user = searchResults[indexPath.row]
-        cell?.textLabel?.text = "\(user.lastName) \(user.firstName)"
-        return cell!
+        let cell = tableView.dequeueReusableCellWithIdentifier(String(ContactsCell)) as! ContactsCell
+        cell.user = searchResults[indexPath.row];
+        cell.showAccessView = false
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let detailVC = UserDetailTableViewController()
+        detailVC.user = searchResults[indexPath.row]
+        container.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
