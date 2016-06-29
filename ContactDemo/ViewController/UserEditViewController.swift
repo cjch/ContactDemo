@@ -56,6 +56,10 @@ class UserEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     //MARK: event response
     func onTextFieldChanged() {
         var doneEnable = zeroCheck()
