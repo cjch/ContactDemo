@@ -16,6 +16,7 @@ class UserDetailTableViewController: UITableViewController {
         super.viewDidLoad()
 
         title = "Detail"
+        view.backgroundColor = UIColor(white: 240/255.0, alpha: 1)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: #selector(onEdit))
         // Uncomment the following line to preserve selection between presentations
@@ -25,6 +26,7 @@ class UserDetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: String(UITableViewCell))
         tableView.registerNib(UINib(nibName: String(ContactsCell), bundle: nil), forCellReuseIdentifier: String(ContactsCell))
+        tableView.separatorStyle = .None
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +78,9 @@ class UserDetailTableViewController: UITableViewController {
         if indexPath.section == 1 && indexPath.row == 1 {
             cell.selectionStyle = .Default
             cell.textLabel?.text = "Phone:  \(user.phone)"
+            cell.backgroundColor = UIColor.whiteColor()
         } else {
+            cell.backgroundColor = UIColor(white: 240/255.0, alpha: 1)
             cell.selectionStyle = .None
             cell.textLabel?.text = nil
         }
@@ -87,7 +91,7 @@ class UserDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 1 {
-            //TODO: 拨打电话
+            UIApplication.sharedApplication().openURL(NSURL(string: "tel:\(user.phone)")!)
         }
     }
 }

@@ -26,6 +26,7 @@ class SearchResultsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: String(ContactsCell), bundle: nil), forCellReuseIdentifier: String(ContactsCell))
     }
 
@@ -40,8 +41,7 @@ class SearchResultsViewController: UIViewController {
 extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let num = searchResults.count
-        tableView.separatorStyle = num == 0 ? .None : .SingleLine
-        return min(num, 2)
+        return num
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

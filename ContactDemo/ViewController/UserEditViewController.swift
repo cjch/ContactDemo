@@ -46,6 +46,9 @@ class UserEditViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(onCancel))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(onDone))
+        navigationItem.rightBarButtonItem?.enabled = false
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onTextFieldChanged), name: UITextFieldTextDidChangeNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +57,18 @@ class UserEditViewController: UIViewController {
     }
     
     //MARK: event response
+    func onTextFieldChanged() {
+        var doneEnable = zeroCheck()
+        if doneEnable && !isNewContact {
+            if firstNameField.text! == user.firstName
+                && lastNameField.text! == user.lastName
+                && phoneField.text! == user.phone {
+                doneEnable = false
+            }
+        }
+        navigationItem.rightBarButtonItem?.enabled = doneEnable
+    }
+    
     func onCancel() {
         view.endEditing(true)
         gotoPreviousPage()
@@ -61,22 +76,13 @@ class UserEditViewController: UIViewController {
     
     func onDone() {
         view.endEditing(true)
-        if !checkValidate() {
-            //TODO:输入错误说明
-            if isNewContact {
-                
-            } else {
-                
-            }
-            return
-        }
-        
-        let user = User(firstName: firstNameField.text!, lastName: lastNameField.text!, phone: phoneField.text!)
+        let nUser = User(firstName: firstNameField.text!, lastName: lastNameField.text!, phone: phoneField.text!)
         if isNewContact {
-            UserDataManager.sharedInstance.insertUser(user)
+            UserDataManager.sharedInstance.insertUser(nUser)
         } else {
-            UserDataManager.sharedInstance.updateUser(user)
-            editDelegate?.userEditDidUpdate(user)
+            nUser.id = user.id
+            UserDataManager.sharedInstance.updateUser(nUser)
+            editDelegate?.userEditDidUpdate(nUser)
         }
         gotoPreviousPage()
     }
@@ -84,7 +90,7 @@ class UserEditViewController: UIViewController {
     func onDelete() {
         view.endEditing(true)
         UserDataManager.sharedInstance.deleteUser(user)
-        gotoPreviousPage()
+        navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func onAvatar() {
@@ -93,18 +99,18 @@ class UserEditViewController: UIViewController {
     }
     
     //MARK: Helper
-    func zeroLengthOrEqual(textField: UITextField, str: String) -> Bool {
-        return textField.text?.characters.count == 0 || (textField.text! == str)
+    func zeroLength(textField: UITextField) -> Bool {
+        return textField.text?.characters.count == 0
     }
     
-    func checkValidate() -> Bool {
-        if zeroLengthOrEqual(firstNameField, str: user.firstName) {
+    func zeroCheck() -> Bool {
+        if zeroLength(firstNameField) {
             return false
         }
-        if zeroLengthOrEqual(lastNameField, str: user.lastName) {
+        if zeroLength(lastNameField) {
             return false
         }
-        if zeroLengthOrEqual(phoneField, str: user.lastName) {
+        if zeroLength(phoneField) {
             return false
         }
         
@@ -147,6 +153,4 @@ extension UserEditViewController: UITextFieldDelegate {
         
         return true
     }
-    
-    
 }

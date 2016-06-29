@@ -265,7 +265,6 @@
 				TargetAttributes = {
 					F5C81D431D21569E00C95A1C = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = VBVAT8HGJQ;
 					};
 					F5C81D571D21569E00C95A1C = {
 						CreatedOnToolsVersion = 7.3;
@@ -534,6 +533,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jch.ContactDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -548,6 +548,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jch.ContactDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

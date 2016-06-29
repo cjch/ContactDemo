@@ -18,7 +18,7 @@ class ContactsCell: UITableViewCell {
         didSet {
             if let u = user {
                 print(user)
-                self.nameLabel.text = "\(u.lastName) \(u.firstName)"
+                self.nameLabel.text = "\(u.firstName) \(u.lastName)"
             } else {
                 self.nameLabel.text = nil;
             }

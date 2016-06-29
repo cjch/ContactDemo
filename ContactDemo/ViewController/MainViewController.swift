@@ -32,20 +32,27 @@ class MainViewController: UIViewController {
         //必须添加这行，否则搜索结果页会有一个高度为64的白条
         self.definesPresentationContext = true
         
-//        let user = User(firstName: "jie", lastName: "chen", phone: "12344")
-//        for _ in 1...7 {
-//            UserDataManager.sharedInstance.insertUser(user)
-//        }
-        
+        tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: String(ContactsCell), bundle: nil), forCellReuseIdentifier: String(ContactsCell))
-        allUsers = UserDataManager.sharedInstance.getAllUsers()
         
-        tableView.tableHeaderView = searchController.searchBar
+        onUserInfoChanged()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(onUserInfoChanged), name: UserInfoChangedNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func onUserInfoChanged() {
+        allUsers = UserDataManager.sharedInstance.getAllUsers()
+        if allUsers.count > 0 {
+            tableView.tableHeaderView = searchController.searchBar
+        } else {
+            tableView.tableHeaderView = nil
+        }
+        tableView.reloadData()
     }
     
     func addUser() {
@@ -58,9 +65,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let num = allUsers.count
-        tableView.separatorStyle = num == 0 ? .None : .SingleLine
-        return num
+        return allUsers.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -85,9 +90,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         let text = searchController.searchBar.text!
-        print("searchBar text: \(text)")
-        
-        searchResultsVC.searchResults = allUsers
+        searchResultsVC.searchResults = UserDataManager.sharedInstance.searchUser(text)
         searchResultsVC.tableView.reloadData()
     }
 }
